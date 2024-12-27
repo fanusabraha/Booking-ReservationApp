@@ -18,8 +18,13 @@ public class VenueController {
 
     @PostMapping("/Booking/{id}")
     public ResponseEntity<String> eventBooking(Long eventId, String phone, String email, String availability, String additionalInfo ){
-        venueService.createBooking(eventId, phone, email, availability, additionalInfo);
-        return ResponseEntity.ok("Booking successful for event ID:" + eventId);
+        String response = venueService.createBooking(eventId, phone, email, availability, additionalInfo);
+        if (response.equals("Booking successful")){
+            return ResponseEntity.ok(response);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+        }
     }
     @PostMapping
     public ResponseEntity<Venue> createBooking(@RequestBody Venue venue){
