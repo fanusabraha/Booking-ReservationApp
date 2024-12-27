@@ -17,6 +17,7 @@ public class Venue {
     private String UserEmail;
     private LocalDateTime bookingTime;
     private String status;
+    private String phoneNumber;
 
     public Long getId() {
         return id;
@@ -64,5 +65,26 @@ public class Venue {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Venue{" +
+                "id=" + id +
+                ", eventId=" + eventId +
+                ", userName='" + userName + '\'' +
+                ", UserEmail='" + UserEmail + '\'' +
+                ", bookingTime=" + bookingTime +
+                ", status='" + status + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
