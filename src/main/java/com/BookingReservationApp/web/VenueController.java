@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/bookings")
-public class BookingController {
+public class VenueController {
     @Autowired
     VenueService venueService;
 
     @PostMapping("/Booking/{id}")
-    public String eventBooking(){
-
-        return "check";
+    public ResponseEntity<String> eventBooking(Long eventId, String phone, String email, String availability, String additionalInfo ){
+        venueService.createBooking(eventId, phone, email, availability, additionalInfo);
+        return ResponseEntity.ok("Booking successful for event ID:" + eventId);
     }
     @PostMapping
     public ResponseEntity<Venue> createBooking(@RequestBody Venue venue){
