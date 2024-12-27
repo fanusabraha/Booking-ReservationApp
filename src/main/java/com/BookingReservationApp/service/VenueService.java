@@ -1,12 +1,12 @@
 package com.BookingReservationApp.service;
 
-import com.BookingReservationApp.repository.BookingRepository;
+import com.BookingReservationApp.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookingService {
+public class VenueService {
     @Autowired
-    BookingRepository bookingRepository;
+    VenueRepository venueRepository;
 
 }
