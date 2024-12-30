@@ -16,7 +16,7 @@ public class VenueService {
     VenueRepository venueRepository;
 
     public String createBooking(Long eventId, String phone, String email, String availability, String additionalInfo) {
-        boolean isBooked = venueRepository.existsByEventAndStatus(eventId, "BOOKED");
+        boolean isBooked = venueRepository.existsByEventIdAndStatus(eventId, "BOOKED");
         boolean isUserAlreadyBooked = venueRepository.existsByEventIdAndUserEmail(eventId, email);
         if (isBooked) {
             return "The location is already booked.";

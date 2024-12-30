@@ -14,7 +14,7 @@ public class VenueController {
     VenueService venueService;
 
     @PostMapping("/Booking/{id}")
-    public ResponseEntity<String> eventBooking(@PathVariable Long eventId,
+    public ResponseEntity<String> eventBooking(@PathVariable("id") Long eventId,
                                                @RequestParam String phone,
                                                @RequestParam String email,
                                                @RequestParam String availability,
