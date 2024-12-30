@@ -14,7 +14,7 @@ public class Venue {
     private Long id;
     private Long eventId;
     private String userName;
-    private String UserEmail;
+    private String userEmail;
     private LocalDateTime bookingTime;
     private String status;
     private String phoneNumber;
@@ -44,11 +44,11 @@ public class Venue {
     }
 
     public String getUserEmail() {
-        return UserEmail;
+        return userEmail;
     }
 
     public void setUserEmail(String userEmail) {
-        UserEmail = userEmail;
+        this.userEmail = userEmail;
     }
 
     public LocalDateTime getBookingTime() {
@@ -81,7 +81,7 @@ public class Venue {
                 "id=" + id +
                 ", eventId=" + eventId +
                 ", userName='" + userName + '\'' +
-                ", UserEmail='" + UserEmail + '\'' +
+                ", UserEmail='" + userEmail + '\'' +
                 ", bookingTime=" + bookingTime +
                 ", status='" + status + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

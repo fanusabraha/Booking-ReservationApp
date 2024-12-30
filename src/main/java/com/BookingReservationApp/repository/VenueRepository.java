@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VenueRepository extends JpaRepository<Venue, Long> {
     // to check if the venue is booked by event ID and Status
-    boolean existsByEventAndStatus(Long id, String status);
+    boolean existsByEventAndStatus(Long eventId, String status);
     // to check if the user has already booked the event by event ID and user email
     boolean existsByEventIdAndUserEmail(Long eventId, String email);
 }
