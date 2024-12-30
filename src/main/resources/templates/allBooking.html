@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All Bookings</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body style="background-image: url('/images/HH.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+<div class="dashboard-container">
+    <div>
+        <button class="button" onclick="location.href='/'">Go to Main Page</button>
+    </div>
+    <br>
+    <h1>All Bookings</h1>
+    <div th:if="${bookings != null && !bookings.isEmpty()}">
+        <table border="1" style="width: 100%; text-align: left; background: white;">
+            <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Event ID</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>Booking Time</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.id}"></td>
+                <td th:text="${booking.eventId}"></td>
+                <td th:text="${booking.userName}"></td>
+                <td th:text="${booking.userEmail}"></td>
+                <!--<td th:text="${#dates.format(booking.bookingTime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+                <td>Date to be generated</td>
+                <td th:text="${booking.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${bookings == null || bookings.isEmpty()}">
+        <h2>No bookings found.</h2>
+    </div>
+    <script src="/js/backgroundslideshow.js"></script>
+
+</div>
+</body>
+</html>

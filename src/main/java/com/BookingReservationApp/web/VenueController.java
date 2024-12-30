@@ -5,14 +5,24 @@ import com.BookingReservationApp.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.List;
+
+@Controller
 @RequestMapping("/api/bookings")
 public class VenueController {
     @Autowired
     VenueService venueService;
+
+    @GetMapping("/all")
+    public String listBookings(ModelMap map) {
+        List<Venue> bookings = venueService.listOfAllBookings();
+        map.addAttribute("bookings", bookings);
+        return "allBooking";
+    }
 
     @PostMapping("/book/{id}")
     public ResponseEntity<String> eventBooking(@PathVariable("id") Long eventId,
@@ -33,9 +43,5 @@ public class VenueController {
         //Venue savedVenue = venueService.saveVenue(venue);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    @GetMapping("/all")
-    public String allBookedVenues(ModelMap map){
-        map.addAttribute("all",venueService.listOfAllBookings());
-        return "allBooking";
-    }
+
 }
