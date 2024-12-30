@@ -3,17 +3,18 @@ package com.BookingReservationApp.service;
 import com.BookingReservationApp.domain.Venue;
 import com.BookingReservationApp.repository.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class VenueService {
     @Autowired
     VenueRepository venueRepository;
+    public List<Venue> listOfAllBookings(){
+        return venueRepository.findAll();
+    }
 
     public String createBooking(Long eventId, String phone, String email, String availability, String additionalInfo) {
         boolean isBooked = venueRepository.existsByEventIdAndStatus(eventId, "BOOKED");
