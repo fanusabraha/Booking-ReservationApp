@@ -24,7 +24,11 @@ public class VenueController {
         map.addAttribute("bookings", bookings);
         return "allBooking";
     }
-
+    @PostMapping("/delete/{id}")
+    public String deleteBookings(@PathVariable("id") Long id ){
+        venueService.deleteBooking(id);
+        return"redirect:/api/bookings/all";
+    }
     @PostMapping("/book/{id}")
     public ResponseEntity<String> eventBooking(@PathVariable("id") Long eventId,
                                                @RequestParam String phone,

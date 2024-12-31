@@ -18,7 +18,8 @@ public class Venue {
     private LocalDateTime bookingTime;
     private String status;
     private String phoneNumber;
-
+    private String additionalInformation;
+    private String availability;
     public Long getId() {
         return id;
     }
@@ -73,6 +74,22 @@ public class Venue {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
     @Override

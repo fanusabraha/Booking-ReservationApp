@@ -26,9 +26,13 @@
                     <tbody>
                     <tr>
                         <td valign="top">
+                            <p>Customer contact details</p>
                             <p th:text="'Event ID: ' + ${booking.eventId}"></p>
-                            <p th:text="'User Name: ' + ${booking.userName}"></p>
-                            <p th:text="'User Email: ' + ${booking.userEmail}"></p>
+                            <p th:text="'Name: ' + ${booking.userName}"></p>
+                            <p th:text="'Email: ' + ${booking.userEmail}"></p>
+                            <p th:text="'phoneNumber: ' + ${booking.phoneNumber}"></p>
+                            <p th:text="'additional information: ' + ${booking.additionalInformation}"></p>
+                            <p th:text="'availability: ' + ${booking.availability}"></p>
                             <!--<p th:text="'Booking Time: ' + ${#dates.format(booking.bookingTime, 'yyyy-MM-dd HH:mm:ss')}"></p>-->
                             <p th:text="'Status: ' + ${booking.status}"></p>
                         </td>
@@ -40,6 +44,9 @@
                                 <option value="Pending" th:selected="${booking.status == 'Pending'}">Pending</option>
                             </select>
                             <button class="button" th:attr="data-booking-id=${booking.id}" onclick="updateStatus(this)">Update Status</button>
+                            <form method="post" th:action="@{'/api/bookings/delete/' + ${booking.id}}">
+                                <button class="button" type="submit">Delete Booking request </button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>

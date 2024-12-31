@@ -13,8 +13,13 @@ import java.util.Optional;
 public class VenueService {
     @Autowired
     VenueRepository venueRepository;
-    public List<Venue> listOfAllBookings(){
+
+    public List<Venue> listOfAllBookings() {
         return venueRepository.findAll();
+    }
+
+    public void deleteBooking(Long id) {
+        venueRepository.deleteById(id);
     }
 
     public String createBooking(Long eventId, String phone, String email, String availability, String additionalInfo) {
@@ -29,6 +34,9 @@ public class VenueService {
         Venue newVenue = new Venue();
         newVenue.setEventId(eventId);
         newVenue.setUserEmail(email);
+        newVenue.setAdditionalInformation(additionalInfo);
+        newVenue.setAvailability(availability);
+        newVenue.setPhoneNumber(phone);
         // date needs to be taken from the search input
         newVenue.setBookingTime(LocalDateTime.now());
         //venue.setUserName(); to be taken from the uid or attributes
