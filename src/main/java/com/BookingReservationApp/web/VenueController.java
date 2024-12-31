@@ -17,18 +17,23 @@ import java.util.Map;
 public class VenueController {
     @Autowired
     VenueService venueService;
-
+    @GetMapping("")
+    public String dashboard(){
+        return "dashBoard";
+    }
     @GetMapping("/all")
     public String listBookings(ModelMap map) {
         List<Venue> bookings = venueService.listOfAllBookings();
         map.addAttribute("bookings", bookings);
         return "allBooking";
     }
+
     @PostMapping("/delete/{id}")
-    public String deleteBookings(@PathVariable("id") Long id ){
+    public String deleteBookings(@PathVariable("id") Long id) {
         venueService.deleteBooking(id);
-        return"redirect:/api/bookings/all";
+        return "redirect:/api/bookings/all";
     }
+
     @PostMapping("/book/{id}")
     public ResponseEntity<String> eventBooking(@PathVariable("id") Long eventId,
                                                @RequestParam String phone,

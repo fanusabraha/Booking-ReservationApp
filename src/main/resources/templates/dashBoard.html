@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<div class="background-slideshow">
+  <!-- Background images will be added via CSS -->
+</div>
+<div class="dashboard-container">
+  <h1>Dashboard</h1>
+  <div>
+    <a th:href="@{/api/bookings/all}" class="button">List of all bookings </a>
+  </div><br>
+  <div>
+    <a href="http://localhost:8080" class="button">Find a location</a>
+  </div>
+
+</div>
+<script src="/js/backgroundslideshow.js"></script>
+</body>
+</html>
