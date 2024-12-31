@@ -5,7 +5,7 @@
     <title>All Bookings</title>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
-<body style="background-image: url('/images/HH.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+<body style="background-image: url('/images/AA.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
 <div class="dashboard-container">
     <div>
         <button class="button" onclick="location.href='/'">Go to Main Page</button>
@@ -13,35 +13,66 @@
     <br>
     <h1>All Bookings</h1>
     <div th:if="${bookings != null && !bookings.isEmpty()}">
-        <table border="1" style="width: 100%; text-align: left; background: white;">
-            <thead>
-            <tr>
-                <th>Booking ID</th>
-                <th>Event ID</th>
-                <th>User Name</th>
-                <th>User Email</th>
-                <th>Booking Time</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="booking : ${bookings}">
-                <td th:text="${booking.id}"></td>
-                <td th:text="${booking.eventId}"></td>
-                <td th:text="${booking.userName}"></td>
-                <td th:text="${booking.userEmail}"></td>
-                <!--<td th:text="${#dates.format(booking.bookingTime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
-                <td>Date to be generated</td>
-                <td th:text="${booking.status}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <ul>
+            <li th:each="booking : ${bookings}">
+                <table border="1" style="width: 100%; text-align: left; background: white; margin-bottom: 20px;">
+                    <thead>
+                    <tr>
+                        <th colspan="2">
+                            <h2 th:text="'Booking ID: ' + ${booking.id}"></h2>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td valign="top">
+                            <p th:text="'Event ID: ' + ${booking.eventId}"></p>
+                            <p th:text="'User Name: ' + ${booking.userName}"></p>
+                            <p th:text="'User Email: ' + ${booking.userEmail}"></p>
+                            <!--<p th:text="'Booking Time: ' + ${#dates.format(booking.bookingTime, 'yyyy-MM-dd HH:mm:ss')}"></p>-->
+                            <p th:text="'Status: ' + ${booking.status}"></p>
+                        </td>
+                        <td valign="top">
+                            <label for="status">Change Booking Status:</label><br>
+                            <select id="status" th:attr="data-booking-id=${booking.id}">
+                                <option value="Accepted" th:selected="${booking.status == 'Accepted'}">Accepted</option>
+                                <option value="Rejected" th:selected="${booking.status == 'Rejected'}">Rejected</option>
+                                <option value="Pending" th:selected="${booking.status == 'Pending'}">Pending</option>
+                            </select>
+                            <button class="button" th:attr="data-booking-id=${booking.id}" onclick="updateStatus(this)">Update Status</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
     </div>
     <div th:if="${bookings == null || bookings.isEmpty()}">
         <h2>No bookings found.</h2>
     </div>
-    <script src="/js/backgroundslideshow.js"></script>
-
 </div>
+
+<script>
+    function updateStatus(button) {
+        const bookingId = button.getAttribute("data-booking-id");
+        const select = document.querySelector(`select[data-booking-id="${bookingId}"]`);
+        const newStatus = select.value;
+
+        fetch(`/api/bookings/${bookingId}/status`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: newStatus })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Booking status updated successfully!');
+                location.reload(); // Reload the page to see the updated status
+            } else {
+                alert('Failed to update booking status.');
+            }
+        })
+        .catch(error => console.error('Error updating status:', error));
+    }
+</script>
 </body>
 </html>
