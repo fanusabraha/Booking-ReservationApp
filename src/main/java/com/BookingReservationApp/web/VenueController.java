@@ -17,10 +17,7 @@ import java.util.Map;
 public class VenueController {
     @Autowired
     VenueService venueService;
-    @GetMapping("")
-    public String dashboard(){
-        return "dashBoard";
-    }
+
     @GetMapping("/all")
     public String listBookings(ModelMap map) {
         List<Venue> bookings = venueService.listOfAllBookings();
