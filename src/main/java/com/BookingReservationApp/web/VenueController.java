@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/api/bookings")
@@ -37,6 +38,16 @@ public class VenueController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
     }
+//    @PutMapping("/{id}/status")
+//    public ResponseEntity<String> updateBookingStatus(@PathVariable Long id, @RequestBody Map<String, String> payload) {
+//        String newStatus = payload.get("status");
+//        boolean updated = venueService.updateBookingStatus(id, newStatus);
+//        if (updated) {
+//            return ResponseEntity.ok("Status updated successfully.");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Booking not found.");
+//        }
+//    }
 
     @PostMapping
     public ResponseEntity<Venue> createBooking(@RequestBody Venue venue) {

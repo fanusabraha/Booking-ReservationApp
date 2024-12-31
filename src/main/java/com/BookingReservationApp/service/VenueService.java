@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VenueService {
@@ -35,5 +36,16 @@ public class VenueService {
         venueRepository.save(newVenue);
         return "Booking successful";
     }
+//    public boolean updateBookingStatus(Long bookingId, String newStatus) {
+//        Optional<Venue> booking = venueRepository.findById(bookingId);
+//        if (booking.isPresent()) {
+//            Venue venue = booking.get();
+//            venue.setStatus(newStatus);
+//            venueRepository.save(venue);
+//            return true;
+//        }
+//        return false;
+//    }
+
 
 }
