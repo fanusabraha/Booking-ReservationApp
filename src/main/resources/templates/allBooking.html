@@ -44,7 +44,7 @@
                                 <option value="Pending" th:selected="${booking.status == 'Pending'}">Pending</option>
                             </select>
                             <button class="button" th:attr="data-booking-id=${booking.id}" onclick="updateStatus(this)">Update Status</button>
-                            <button class="button" onclick="location.href='http://localhost:8080/event/+${booking.eventId}'">View Location</button>
+                            <a class="button" th:href="@{'http://localhost:8080/event/' + ${booking.eventId}}">View Location</a>
                             <form method="post" th:action="@{'/api/bookings/delete/' + ${booking.id}}">
                                 <button class="button" type="submit">Delete Booking request </button>
                             </form>
