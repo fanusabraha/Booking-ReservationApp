@@ -44,6 +44,7 @@ public class VenueController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
         }
     }
+
 //    @PutMapping("/{id}/status")
 //    public ResponseEntity<String> updateBookingStatus(@PathVariable Long id, @RequestBody Map<String, String> payload) {
 //        String newStatus = payload.get("status");
